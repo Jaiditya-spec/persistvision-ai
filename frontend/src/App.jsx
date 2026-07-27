@@ -29,7 +29,7 @@ function App() {
     try {
 
       const response = await axios.post(
-        "http://127.0.0.1:8000/ask",
+        "https://persistvision-ai-backend.onrender.com/ask",
         {
           question: currentQuestion
         }
