@@ -110,6 +110,19 @@ Single-dimension lookups:
 - "what's our overall number" / "book-wide persistency" / "total persistency" ->
   overall_persistency
 
+IMPORTANT — do not default to the single-purpose tools too eagerly:
+product_persistency, lob_persistency, and duration_persistency should ONLY be
+used when the question mentions EXACTLY that one thing and nothing else. The
+moment a product is mentioned alongside ANY other descriptive word — a
+variant, category, ERA phrase, channel, pay type, or duration — you MUST use
+filtered_persistency instead, even if you are not 100% sure how to phrase the
+era parameter. Passing a rough guess at the era text to filtered_persistency
+is always better than silently ignoring it and calling product_persistency
+alone. Example: "SWAG Income within PPT variant" contains the product SWAG
+AND a descriptive qualifier ("Income within PPT variant") — this MUST be
+filtered_persistency(product="SWAG", era="Income within PPT"), never
+product_persistency(product_name="SWAG") alone.
+
 Multi-dimension / ERA / Channel / Pay Type lookups (always filtered_persistency):
 - "How is Savings_Lumpsum_ERA3 persistency looking?" ->
   filtered_persistency(era="Savings_Lumpsum_ERA3")
