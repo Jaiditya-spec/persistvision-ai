@@ -12,8 +12,14 @@ function Dashboard() {
   useEffect(() => {
     fetch(`${API_BASE}/dashboard-summary`)
       .then((res) => res.json())
-      .then((data) => setSummary(data))
-      .catch(() => setSummary({ status: "error" }));
+      .then((data) => {
+        if (data.status === "success") {
+          setSummary(data);
+        } else {
+          setSummary(null);
+        }
+      })
+      .catch(() => setSummary(null));
   }, []);
 
   function toggleLob(lob) {
